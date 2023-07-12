@@ -21,6 +21,7 @@ public class MyUserLoginAction implements MyAction {
 
     @Override
     public void run(String[] args) {
+        System.out.println("****************************************");
         System.out.println("现在你在用户登录子菜单里.");
 
         while (true) {
@@ -41,5 +42,4 @@ public class MyUserLoginAction implements MyAction {
             }
         }
     }
-    
 }

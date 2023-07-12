@@ -2,18 +2,18 @@ package org.example;
 
 import java.util.Scanner;
 
-public class MyAboutAction implements MyAction {
-    private static final String ACTION_NAME = "about";
+public class MyAdminiAction implements MyAction {
+    private static final String ACTION_NAME = "admini";
 
     private Scanner scanner = null;
 
-    public MyAboutAction(Scanner scanner) {
+    public MyAdminiAction(Scanner scanner) {
         this.scanner = scanner;
     }
 
     @Override
     public String getActionName() {
-        return MyAboutAction.ACTION_NAME;
+        return MyAdminiAction.ACTION_NAME;
     }
 
     @Override
