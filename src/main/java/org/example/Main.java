@@ -28,7 +28,7 @@ public class Main {
             System.out.println("2、user");
             System.out.print("请选择您的身份 exit退出 >");
             userInput = scanner.nextLine();
-            System.out.println("");
+            System.out.println("\n\n");
 
             String actionName = null;
             for(MyAction oneAction: actionList) {
