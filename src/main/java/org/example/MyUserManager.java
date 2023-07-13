@@ -37,15 +37,65 @@ public class MyUserManager {
                     System.out.println("Login successful!");
                     return true;
                 } else {
-                    System.out.println("Incorrect password.\n\n");
+                    System.out.println("Incorrect password.");
                 }
             } else {
-                System.out.println("Username does not exist.\n\n");
+                System.out.println("Username does not exist.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to modify: " + e.getMessage() + "\n\n");
+        }
+
+        return false;
+    }
+
+    public boolean Modify(String username, String passwordOld, String passwordNew){ //密码修改验证
+        try (Connection connection = DriverManager.getConnection(DB_URL);
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ?")) {
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+    
+            if (resultSet.next()) {
+                String storedPassword = resultSet.getString("passwordOld");
+                if (passwordOld.equals(storedPassword)) {
+                    statement.setString(2, passwordNew);
+                    System.out.println("Modify successful!");
+                    return true;
+                } else {
+                    System.out.println("Incorrect oldPassword.");
+                }
+            } else {
+                System.out.println("Username does not exist.");
             }
         } catch (SQLException e) {
             System.out.println("Failed to login: " + e.getMessage() + "\n\n");
         }
 
+        return false;
+    }
+
+    public boolean Reset(String username, String passwordOld, String passwordNew){ //密码重置验证
+        try (Connection connection = DriverManager.getConnection(DB_URL);
+             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Users WHERE username = ?")) {
+            statement.setString(1, username);
+            ResultSet resultSet = statement.executeQuery();
+    
+            if (resultSet.next()) {
+                String storedPassword = resultSet.getString("passwordOld");
+                if (passwordOld.equals(storedPassword)) {
+                    statement.setString(2, passwordNew);
+                    System.out.println("Reset successful!");
+                    return true;
+                } else {
+                    System.out.println("Incorrect oldPassword.");
+                }
+            } else {
+                System.out.println("Username does not exist.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to reset: " + e.getMessage() + "\n\n");
+        }
+        
         return false;
     }
 }
