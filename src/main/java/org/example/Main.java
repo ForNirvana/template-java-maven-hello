@@ -7,18 +7,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        
-        DatabaseInitializer databaseInitializer = new DatabaseInitializer(); //数据库初始化
-        databaseInitializer.initializeDatabase();
 
         Scanner scanner = new Scanner(System.in);
         List<MyAction> actionList = new ArrayList<MyAction>();
 
-        MyUserAction user = new MyUserAction(scanner);
-        actionList.add(user);
-
-        MyAdminiAction admini = new MyAdminiAction(scanner);
+        MyAdminiAction admini = new MyAdminiAction(scanner); //创建管理员对象
         actionList.add(admini);
+
+        MyUserAction user = new MyUserAction(scanner); //创建用户对象
+        actionList.add(user);
 
         String userInput = "";
 
