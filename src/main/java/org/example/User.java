@@ -363,5 +363,4 @@ public class User {
         System.out.println("需要花费"+sum+"元");
         System.out.println();
     }
-
 }
