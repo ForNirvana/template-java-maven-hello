@@ -115,7 +115,7 @@ public class User {
                 break;
         }
 
-        //if(findUserName(users, userName) == -1){
+        if(findUserName(users, userName) == -1){
             System.out.print("请输入要注册的用户密码");
             while(true){
                 String password = sc.next();
@@ -140,9 +140,9 @@ public class User {
             numUser++;
             quickSortUser(users,0,numUser-1);
             System.out.println("注册成功!");
-        //}else {
-        //    System.out.println("用户名已存在，注册失败!");
-        //}
+        }else {
+           System.out.println("用户名已存在，注册失败!");
+        }
     }
 
     public void userResetPassword(User user1){   //修改密码
