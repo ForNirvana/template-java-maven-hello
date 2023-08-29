@@ -27,6 +27,11 @@ public class Goods {
         this.num = num;
     }
 
+    public Goods(int id, int num){
+        this.id = id;
+        this.num = num;
+    }
+
     public int getId() {   //获取商品信息
         return id;
     }
