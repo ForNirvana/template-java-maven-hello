@@ -111,6 +111,7 @@ public class User {
             String userName = sc.next();
             if(userName.length() < 5){
                 System.out.print("非法输入!要注册的用户名不少于5个字符,请重新输入: ");
+                break;
             }else
                 break;
         }
@@ -121,6 +122,7 @@ public class User {
                 String password = sc.next();
                 if(!password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")){
                     System.out.print("非法输入!要注册的密码不少于8个字符,且必须是大小写字母、数字和标点符号的组合,请重新输入: ");
+                    break;
                 }else
                     break;
             }
@@ -151,8 +153,15 @@ public class User {
         String pass = sc.next();
         if(user1.password.equals(pass)) {
             System.out.println("请输入修改后的密码");
-            Scanner reader = new Scanner(System.in);
-            user1.password = reader.nextLine();
+            while(true){
+                String reader = sc.next();
+                if(!reader.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")){
+                    System.out.print("非法输入!要注册的密码不少于8个字符,且必须是大小写字母、数字和标点符号的组合,请重新输入: ");
+                    user1.password = reader;
+                    break;
+                }else
+                    break;
+            }
         }
         else
             System.out.println("原始密码错误，修改密码失败!");

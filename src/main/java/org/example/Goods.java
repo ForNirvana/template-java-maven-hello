@@ -165,6 +165,7 @@ public class Goods {
             if(num < 0){
                 System.out.print("非法输入!请重新输入商品数量: ");
                 num = sc.nextInt();
+                break;
             }
             else
                 break;
@@ -260,6 +261,7 @@ public class Goods {
                 System.out.print("非法输入!请重新输入商品数量: ");
                 try {
                     num = sc.nextInt();
+                    break;
                 }
                 catch (Exception e){
                     System.out.println("非法输入!");
