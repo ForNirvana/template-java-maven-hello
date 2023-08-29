@@ -165,7 +165,6 @@ public class Goods {
             if(num < 0){
                 System.out.print("非法输入!请重新输入商品数量: ");
                 num = sc.nextInt();
-                break;
             }
             else
                 break;
@@ -187,15 +186,8 @@ public class Goods {
 
         Scanner sc = new Scanner(System.in);
         System.out.print("请输入要删除商品的ID: ");
-        try {
-            int id = sc.nextInt();
-        }
-        catch (Exception e){
-            System.out.println("非法输入!");
-            sc.next();
-            return;
-        }
 
+        int id = sc.nextInt();
         int index= findGoodIndex(goods, id);
         if(index == -1) {
             System.out.println("没有找到该商品，删除失败!");
@@ -220,48 +212,47 @@ public class Goods {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入要修改商品的编号: ");
 
-        try {
-            int id = sc.nextInt();
-            index = findGoodIndex(goods, id);
-            if (index == -1) {
-                System.out.println("没有找到该商品，无法修改!");
-                return;
-            }
-            System.out.println("请输入修改后的编号: ");
-            int newId = sc.nextInt();
-            if (findGoodIndex(goods, newId) != -1) {
-                System.out.println("已存在相同编号的商品!");
-                return;
-            } else
-                goods[index].id = newId;
-
-            System.out.print("请输入修改后商品的名称: ");
-            String name = sc.next();
-            System.out.print("请输入修改后商品的生产厂家: ");
-            String manufacturer = sc.next();
-            System.out.print("请输入修改后商品的生产日期: ");
-            int productionDate = sc.nextInt();
-            System.out.print("请输入修改后商品的型号: ");
-            int model = sc.nextInt();
-            System.out.print("请输入修改后商品的进货价: ");
-            double buyingPrice = sc.nextDouble();
-            System.out.print("请输入修改后商品的零售价: ");
-            double retailPrice = sc.nextDouble();
-            System.out.print("请输入修改后商品的数量: ");
-            int num = sc.nextInt();
-        }
-        catch (Exception e){
-            System.out.println("非法输入!");
-            sc.next();
+        int id = sc.nextInt();
+        index = findGoodIndex(goods, id);
+        if (index == -1) {
+            System.out.println("没有找到该商品，无法修改!");
             return;
         }
+        System.out.println("请输入修改后的编号: ");
+        int newId = sc.nextInt();
+        if (findGoodIndex(goods, newId) != -1) {
+            System.out.println("已存在相同编号的商品!");
+            return;
+        } else
+            goods[index].id = newId;
+
+        System.out.print("请输入修改后商品的名称: ");
+        String newName = sc.next();
+        goods[index].name = newName;
+        System.out.print("请输入修改后商品的生产厂家: ");
+        String newManufacturer = sc.next();
+        goods[index].manufacturer = newManufacturer;
+        System.out.print("请输入修改后商品的生产日期: ");
+        int newProductionDate = sc.nextInt();
+        goods[index].productionDate = newProductionDate;
+        System.out.print("请输入修改后商品的型号: ");
+        int newModel = sc.nextInt();
+        goods[index].model = newModel;
+        System.out.print("请输入修改后商品的进货价: ");
+        double newBuyingPrice = sc.nextDouble();
+        goods[index].buyingPrice = newBuyingPrice;
+        System.out.print("请输入修改后商品的零售价: ");
+        double newRetailPrice = sc.nextDouble();
+        goods[index].retailPrice = newRetailPrice;
+        System.out.print("请输入修改后商品的数量: ");
+        int newNum = sc.nextInt();
+        goods[index].num = newNum;
 
         while(true){
             if(num < 0){
                 System.out.print("非法输入!请重新输入商品数量: ");
                 try {
                     num = sc.nextInt();
-                    break;
                 }
                 catch (Exception e){
                     System.out.println("非法输入!");

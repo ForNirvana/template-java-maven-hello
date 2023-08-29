@@ -56,9 +56,9 @@ public class MarketManager {
                                     System.out.println("密码错误!请重新输入: ");
                                     flag++;
                                     if(flag == 5){
-                                        System.out.println("密码连续输入错误5次,账户已被锁定,无法登录");
+                                        System.out.println("密码连续输入错误5次,账户已被锁定,无法登录\n");
+                                        break;
                                     }
-                                    break;
                                 }                                
                             }
                         }
@@ -158,6 +158,7 @@ public class MarketManager {
                 System.out.print("请输入要执行的操作: ");
                 try{
                     act=scannar.nextInt();
+                    scannar.nextLine();
                 }
                 catch (Exception e){
                     System.out.println("非法输入，请按提示输入操作");

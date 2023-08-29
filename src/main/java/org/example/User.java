@@ -111,18 +111,16 @@ public class User {
             String userName = sc.next();
             if(userName.length() < 5){
                 System.out.print("非法输入!要注册的用户名不少于5个字符,请重新输入: ");
-                break;
             }else
                 break;
         }
 
-        if(findUserName(users, userName) == -1){
+        //if(findUserName(users, userName) == -1){
             System.out.print("请输入要注册的用户密码");
             while(true){
                 String password = sc.next();
                 if(!password.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")){
                     System.out.print("非法输入!要注册的密码不少于8个字符,且必须是大小写字母、数字和标点符号的组合,请重新输入: ");
-                    break;
                 }else
                     break;
             }
@@ -142,25 +140,25 @@ public class User {
             numUser++;
             quickSortUser(users,0,numUser-1);
             System.out.println("注册成功!");
-        }else {
-            System.out.println("用户名已存在，注册失败!");
-        }
+        //}else {
+        //    System.out.println("用户名已存在，注册失败!");
+        //}
     }
 
     public void userResetPassword(User user1){   //修改密码
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入原始密码");
-        String pass = sc.next();
+        String pass = sc.nextLine();
         if(user1.password.equals(pass)) {
             System.out.println("请输入修改后的密码");
             while(true){
-                String reader = sc.next();
+                String reader = sc.nextLine();
                 if(!reader.matches("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,}$")){
-                    System.out.print("非法输入!要注册的密码不少于8个字符,且必须是大小写字母、数字和标点符号的组合,请重新输入: ");
+                    System.out.println("非法输入!要注册的密码不少于8个字符,且必须是大小写字母、数字和标点符号的组合,请重新输入: ");
+                }else{
                     user1.password = reader;
                     break;
-                }else
-                    break;
+                }
             }
         }
         else
@@ -390,12 +388,16 @@ public class User {
             }
         }
         System.out.println("需要支付"+overheadCal(trolley)+"元");
-        for (int i = 0;i<numTrolley;i++){
+        System.out.println("请选择使用:1、微信 2、支付宝 3、银行卡支付: ");
+        Scanner sc = new Scanner(System.in);
+        int buy = sc.nextInt();
+        for (int i = 0; i < numTrolley; i++){
             goodsIndex = g1.findGoodIndex(goods,trolley[i].id);
             goods[goodsIndex].num -= trolley[i].num;
             trolley[i] = null;
         }
         numTrolley = 0;
+        System.out.println("支付成功!\n");
     }
 
     public void printHistory(Goods[][] history) {   //打印历史记录
