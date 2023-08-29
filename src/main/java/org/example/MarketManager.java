@@ -26,29 +26,31 @@ public class MarketManager {
         while (true){
             if(authority == -1){
                 System.out.println("===============超市管理系统登陆界面==============");
-                System.out.println("1.用户登录 2.管理员登录 3.用户注册 4.退出系统");
+                System.out.println("1.用户登录 2.管理员登录 3.用户注册 0.退出系统");
                 System.out.println("请输入要执行的操作");
                 try{
-                    act=scannar.nextInt();
+                    act = scannar.nextInt();
+                    scannar.nextLine();
                 }
                 catch (Exception e){
                     System.out.println("非法输入，请按提示输入操作");
-                    scannar.next();
+                    scannar.nextLine();
                     act = -1;
                 }
                 switch (act){
                     case 1:
                         int flag = 0;
                         System.out.println("请输入用户名");
-                        username = scannar.next();
+                        username = scannar.nextLine();
                         if(u1.findUserName(users,username) != -1){
                             userIndex=u1.findUserName(users, username);
                             System.out.println("请输入密码");
                             while(true){
-                                userPassword = scannar.next();
+                                userPassword = scannar.nextLine();
                                 if(users[userIndex].password.equals(userPassword)){
                                     System.out.println("用户登陆成功!");
                                     authority = 1;
+                                    break;
                                 }
                                 else{
                                     System.out.println("密码错误!请重新输入: ");
@@ -56,6 +58,7 @@ public class MarketManager {
                                     if(flag == 5){
                                         System.out.println("密码连续输入错误5次,账户已被锁定,无法登录");
                                     }
+                                    break;
                                 }                                
                             }
                         }
@@ -64,10 +67,10 @@ public class MarketManager {
                         break;
                     case 2:
                         System.out.println("请输入管理员账号");
-                        adminName = scannar.next();
+                        adminName = scannar.nextLine();
                         if(admin.findAdminName(adminName) == 1){
                             System.out.println("请输入密码");
-                            adminPassword = scannar.next();
+                            adminPassword = scannar.nextLine();
                             if(admin.password.equals(adminPassword)){
                                 System.out.println("管理员登陆成功!");
                                 authority = 0;
@@ -82,20 +85,20 @@ public class MarketManager {
                     case 3:
                         u1.userSignUp(users);
                         break;
-                    case 4:
+                    case 0:
                         return;
                 }
             }else if (authority == 0) {
                 System.out.println("***********************超市管理系统管理员界面***********************");
                 System.out.println("1.货物清单 2.增加商品 3.删除商品 4.修改商品 5.查找商品 6.用户列表");
-                System.out.println("7.查找用户 8.删除用户 9.更改密码 10.修改用户密码 0.退出登录");
+                System.out.println("7.查找用户 8.删除用户 9.更改密码 10.重置用户密码 0.退出登录");
                 System.out.print("请输入要执行的操作: ");
                 try{
                     act = scannar.nextInt();
                 }
                 catch (Exception e){
                     System.out.println("非法输入，请按提示输入操作");
-                    scannar.next();
+                    scannar.nextLine();
                     act = -1;
                 }
                 switch (act){
@@ -133,13 +136,14 @@ public class MarketManager {
                             userIndex = u1.findUserId(users, userResId);
                             if(userIndex!=-1){
                                 u1.password = "00000000";
+                                System.out.println("重置用户密码完成\n");
                             }
                             else{
                                 System.out.println("未找到该用户，修改密码失败!");
                             }
                         }catch (Exception e){
                             System.out.println("非法输入，请按提示输入");
-                            scannar.next();
+                            scannar.nextLine();
                             userResId=-1;
                         }
                         break;
@@ -157,7 +161,7 @@ public class MarketManager {
                 }
                 catch (Exception e){
                     System.out.println("非法输入，请按提示输入操作");
-                    scannar.next();
+                    scannar.nextLine();
                     act=-1;
                 }
                 switch (act){

@@ -27,11 +27,6 @@ public class Goods {
         this.num = num;
     }
 
-    public Goods(int id, int num){
-        this.id = id;
-        this.num = num;
-    }
-
     public int getId() {   //获取商品信息
         return id;
     }
@@ -127,17 +122,17 @@ public class Goods {
             System.out.println("找不到该商品!");
         }
         else {
-            System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品编号", "商品名称", "生产厂家", "生产日期", "型号", "进货价", "零售价", "数量");
-            System.out.printf("%-12d\t\t%-12s\t\t%-12s\t\t%-12d\t\t%-12d\t\t%-12.2f\t\t%-12.2f\t\t%-12d\n", goods[goodsIndex].id, goods[goodsIndex].name, goods[goodsIndex].manufacturer, goods[goodsIndex].productionDate, goods[goodsIndex].model, goods[goodsIndex].buyingPrice, goods[goodsIndex].retailPrice, goods[goodsIndex].num);
+            System.out.printf("%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\n", "商品编号", "商品名称", "生产厂家", "生产日期", "型号", "进货价", "零售价", "数量");
+            System.out.printf("%-9d\t\t%-9s\t\t%-9s\t\t%-9d\t\t%-9d\t\t%-9.2f\t\t%-9.2f\t\t%-9d\n", goods[goodsIndex].id, goods[goodsIndex].name, goods[goodsIndex].manufacturer, goods[goodsIndex].productionDate, goods[goodsIndex].model, goods[goodsIndex].buyingPrice, goods[goodsIndex].retailPrice, goods[goodsIndex].num);
             System.out.println();
         }
     }
 
     public void printAllGoods(Goods[] goods) {   //列出所有商品信息 
         System.out.println("====================商品清单====================");
-        System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品编号", "商品名称", "生产厂家", "生产日期", "型号", "进货价", "零售价", "数量");
+        System.out.printf("%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\n", "商品编号", "商品名称", "生产厂家", "生产日期", "型号", "进货价", "零售价", "数量");
         for (int i = 0; i < numGood; i++) {
-            System.out.printf("%-12d\t\t%-12s\t\t%-12s\t\t%-12d\t\t%-12d\t\t%-12.2f\t\t%-12.2f\t\t%-12d\n", goods[i].getId(), goods[i].getName(), goods[i].getManufacturer(), goods[i].getProductionDate(), goods[i].getModel(), goods[i].getBuyingPrice(), goods[i].getRetailPrice(), goods[i].num);
+            System.out.printf("%-9d\t\t%-9s\t\t%-9s\t\t%-9d\t\t%-9d\t\t%-9.2f\t\t%-9.2f\t\t%-9d\n", goods[i].getId(), goods[i].getName(), goods[i].getManufacturer(), goods[i].getProductionDate(), goods[i].getModel(), goods[i].getBuyingPrice(), goods[i].getRetailPrice(), goods[i].num);
         }
         System.out.println();
     }
@@ -146,7 +141,6 @@ public class Goods {
         int Id = -1;
         Scanner sc = new Scanner(System.in);
         System.out.print("请输入要添加商品的编号: ");
-        try {
             Id = sc.nextInt();
             if (findGoodIndex(goods, Id) != -1) {
                 System.out.println("已存在相同的商品!");
@@ -166,12 +160,6 @@ public class Goods {
             double retailPrice = sc.nextDouble();
             System.out.print("请输入要添加商品的数量: ");
             int num = sc.nextInt();
-        }
-        catch (Exception e){
-            System.out.println("非法输入!");
-            sc.next();
-            return;
-        }
 
         while(true){
             if(num < 0){

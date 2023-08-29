@@ -85,7 +85,7 @@ public class User {
     }
 
     public int findUserName(User[] users, String userName){   //遍历，返回下标
-        for(int i = 0;i<numUser;i++){
+        for(int i = 0; i < numUser; i++){
             if(users[i].userName.equals(userName)){
                 return i;
             }
@@ -96,8 +96,7 @@ public class User {
     public void userSignUp(User[] users) {   //用户注册
         Scanner sc = new Scanner(System.in);
         int Id = numUser + 1;
-        if(findUserId(users,Id) != -1)
-        {
+        if(findUserId(users,Id) != -1){
             System.out.println("已存在相同ID的用户!");
             for(int i = 1; i < maxSize; i++){
                 if(findUserId(users,i) == -1){
@@ -116,7 +115,7 @@ public class User {
                 break;
         }
 
-        if(findUserName(users,userName) == -1){
+        if(findUserName(users, userName) == -1){
             System.out.print("请输入要注册的用户密码");
             while(true){
                 String password = sc.next();
@@ -141,8 +140,7 @@ public class User {
             numUser++;
             quickSortUser(users,0,numUser-1);
             System.out.println("注册成功!");
-        }
-        else {
+        }else {
             System.out.println("用户名已存在，注册失败!");
         }
     }
@@ -162,9 +160,9 @@ public class User {
 
     public void printAllUser(User[] users) {   //打印所有用户信息
         System.out.println(" =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = 用户列表 =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = ");
-        System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t\n", "用户ID", "用户名", "用户级别", "用户注册时间", "用户手机号", "用户邮箱");
+        System.out.printf("%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t\n", "用户ID", "用户名", "用户级别", "用户注册时间", "用户手机号", "用户邮箱");
         for (int i = 0;i<User.numUser;i++) {
-            System.out.printf("%-12d\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t\n",users[i].userId, users[i].userName, users[i].userLevel, users[i].userRegistrationTime, users[i].userPhone, users[i].userEmail);
+            System.out.printf("%-9d\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t\n",users[i].userId, users[i].userName, users[i].userLevel, users[i].userRegistrationTime, users[i].userPhone, users[i].userEmail);
         }
         System.out.println();
     }
@@ -210,8 +208,8 @@ public class User {
             System.out.println("找不到该用户!");
         }
         else {
-            System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t\n", "用户ID", "用户名", "用户级别", "用户注册时间", "用户手机号", "用户邮箱");
-            System.out.printf("%-12d\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t\n",users[userIndex].userId, users[userIndex].userName, users[userIndex].userLevel, users[userIndex].userRegistrationTime, users[userIndex].userPhone, users[userIndex].userEmail);
+            System.out.printf("%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t\n", "用户ID", "用户名", "用户级别", "用户注册时间", "用户手机号", "用户邮箱");
+            System.out.printf("%-9d\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t\n",users[userIndex].userId, users[userIndex].userName, users[userIndex].userLevel, users[userIndex].userRegistrationTime, users[userIndex].userPhone, users[userIndex].userEmail);
             System.out.println();
         }
     }
@@ -247,9 +245,9 @@ public class User {
 
     public void printTrolley(Goods[] trolley) {   //打印购物车
         System.out.println(" =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = 购物车 =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = ");
-        System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品编号", "商品名称", "商品零售价", "购买数量", "小计");
+        System.out.printf("%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\n", "商品编号", "商品名称", "商品零售价", "购买数量", "小计");
         for (int i = 0;i<numTrolley;i++) {
-            System.out.printf("%-12d\t\t%-12s\t\t%-12.2f\t\t%-12d\t\t%-12.2f\n", trolley[i].id, trolley[i].name, trolley[i].retailPrice, trolley[i].num, trolley[i].num*trolley[i].retailPrice);
+            System.out.printf("%-9d\t\t%-9s\t\t%-9.2f\t\t%-9d\t\t%-9.2f\n", trolley[i].id, trolley[i].name, trolley[i].retailPrice, trolley[i].num, trolley[i].num*trolley[i].retailPrice);
         }
         System.out.println("-----------------总计------------------");
         System.out.println("需要花费"+overheadCal(trolley)+"元");
@@ -287,7 +285,7 @@ public class User {
                         return;
                     }
                 }
-                Goods newTrolley = new Goods(id, num);
+                Goods newTrolley = new Goods(id, goods[index].name, goods[index].manufacturer, goods[index].productionDate, goods[index].model, goods[index].buyingPrice, goods[index].retailPrice , num);
                 trolley[numTrolley] = newTrolley;
                 numTrolley++;
                 g1.quickSortGood(trolley, 0, numTrolley - 1);
@@ -370,7 +368,7 @@ public class User {
                 return;
             }
         }
-        for(int i = 0;i<maxHistory;i++){
+        for(int i = 0; i < maxHistory; i++){
             if(history[i][0] == null) {
                 for (int j = 0; j < numTrolley; j++) {
                     history[i][j] = trolley[j];
@@ -408,10 +406,10 @@ public class User {
             System.out.println("未找到该历史记录");
             return;
         }
-        System.out.printf(" =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = 历史记录%d =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = \n",historyId);
-        System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品编号", "商品名称", "商品单价", "购买数量", "小计");
+        System.out.printf(" =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = 历史记录%d =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  =  = \n", historyId);
+        System.out.printf("%-9s\t\t%-9s\t\t%-9s\t\t%-9s\t\t%-9s\n", "商品编号", "商品名称", "商品单价", "购买数量", "小计");
         for (int i = 0;i<history[historyId][0].numHistoryTrolley;i++) {
-            System.out.printf("%-12d\t\t%-12s\t\t%-12.2f\t\t%-12d\t\t%-12.2f\n", history[historyId][i].id, history[historyId][i].name, history[historyId][i].retailPrice, history[historyId][i].num, history[historyId][i].num*history[historyId][i].retailPrice);
+            System.out.printf("%-9d\t\t%-9s\t\t%-9.2f\t\t%-9d\t\t%-9.2f\n", history[historyId][i].id, history[historyId][i].name, history[historyId][i].retailPrice, history[historyId][i].num, history[historyId][i].num*history[historyId][i].retailPrice);
         }
         System.out.println("-----------------总计------------------");
         double sum = 0;
