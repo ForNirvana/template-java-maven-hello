@@ -3,28 +3,53 @@ package org.example;
 import java.util.Scanner;
 
 public class Goods {
-    int id;
-    int num;
-    double price;
-    String name;
-    public static int maxSize=100;
-    public static int numGood=3;
-    int numHistoryTrolley=0;
-    public Goods(int id, double price, String name,int num) {
+    int id;   //商品编号
+    String name;   //商品名称
+    String manufacturer;   //生产厂家
+    int productionDate;   //生产日期
+    int model;   //型号
+    double buyingPrice;   //进货价
+    double retailPrice;   //零售价
+    int num;   //数量
+
+    public static int maxSize = 100;
+    public static int numGood = 3;
+    int numHistoryTrolley = 0;
+
+    public Goods(int id, String name, String manufacturer, int productionDate, int model, double buyingPrice, double retailPrice, int num){
         this.id = id;
-        this.price = price;
         this.name = name;
+        this.manufacturer = manufacturer;
+        this.productionDate = productionDate;
+        this.model = model;
+        this.buyingPrice = buyingPrice;
+        this.retailPrice = retailPrice;
         this.num = num;
     }
 
-    public int getId() {
+    public int getId() {   //获取商品信息
         return id;
-    }
-    public double getPrice() {
-        return price;
     }
     public String getName() {
         return name;
+    }
+    public String getManufacturer() {
+        return manufacturer;
+    }
+    public int getProductionDate() {
+        return productionDate;
+    }
+    public int getModel() {
+        return model;
+    }
+    public double getBuyingPrice() {
+        return buyingPrice;
+    }
+    public double getRetailPrice() {
+        return retailPrice;
+    }
+    public int getNum() {
+        return num;
     }
     public Goods() {
         maxSize = 100;
@@ -88,7 +113,7 @@ public class Goods {
         return -1;
     }
 
-    public void lookUpGoods(Goods[] goods){   //查找商品
+    public void lookUpGoods(Goods[] goods){   //查询商品信息
         Scanner sc = new Scanner(System.in);
         System.out.print("商品查找,请输入商品名称:");
         String goodsName = sc.next();
@@ -97,17 +122,17 @@ public class Goods {
             System.out.println("找不到该商品!");
         }
         else {
-            System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品ID", "商品名称", "商品单价","商品数量");
-            System.out.printf("%-12d\t\t%-12s\t\t%-12.2f\t\t%-12d\n", goods[goodsIndex].id, goods[goodsIndex].name, goods[goodsIndex].price,goods[goodsIndex].num);
+            System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品编号", "商品名称", "生产厂家", "生产日期", "型号", "进货价", "零售价", "数量");
+            System.out.printf("%-12d\t\t%-12s\t\t%-12s\t\t%-12d\t\t%-12d\t\t%-12.2f\t\t%-12.2f\t\t%-12d\n", goods[goodsIndex].id, goods[goodsIndex].name, goods[goodsIndex].manufacturer, goods[goodsIndex].productionDate, goods[goodsIndex].model, goods[goodsIndex].buyingPrice, goods[goodsIndex].retailPrice, goods[goodsIndex].num);
             System.out.println();
         }
     }
 
     public void printAllGoods(Goods[] goods) {   //列出所有商品信息 
         System.out.println("====================商品清单====================");
-        System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品ID", "商品名称", "商品单价","商品数量");
+        System.out.printf("%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\t\t%-12s\n", "商品编号", "商品名称", "生产厂家", "生产日期", "型号", "进货价", "零售价", "数量");
         for (int i = 0; i < numGood; i++) {
-            System.out.printf("%-12d\t\t%-12s\t\t%-12.2f\t\t%-12d\n",goods[i].getId(), goods[i].getName(), goods[i].getPrice(), goods[i].num);
+            System.out.printf("%-12d\t\t%-12s\t\t%-12s\t\t%-12d\t\t%-12d\t\t%-12.2f\t\t%-12.2f\t\t%-12d\n", goods[i].getId(), goods[i].getName(), goods[i].getManufacturer(), goods[i].getProductionDate(), goods[i].getModel(), goods[i].getBuyingPrice(), goods[i].getRetailPrice(), goods[i].num);
         }
         System.out.println();
     }
@@ -115,18 +140,26 @@ public class Goods {
     public void add(Goods[] goods) {   //增加商品
         int Id = -1;
         Scanner sc = new Scanner(System.in);
-        System.out.print("请输入要添加商品的ID：");
+        System.out.print("请输入要添加商品的编号: ");
         try {
             Id = sc.nextInt();
             if (findGoodIndex(goods, Id) != -1) {
-                System.out.println("已存在相同ID的商品!");
+                System.out.println("已存在相同的商品!");
                 return;
             }
-            System.out.print("请输入要添加商品的价格：");
-            double price = sc.nextDouble();
-            System.out.print("请输入要添加商品的名称");
+            System.out.print("请输入要添加商品的名称: ");
             String name = sc.next();
-            System.out.print("请输入要添加商品的数量：");
+            System.out.print("请输入要添加商品的生产厂家: ");
+            String manufacturer = sc.next();
+            System.out.print("请输入要添加商品的生产日期: ");
+            int productionDate = sc.nextInt();
+            System.out.print("请输入要添加商品的型号: ");
+            int model = sc.nextInt();
+            System.out.print("请输入要添加商品的进货价: ");
+            double buyingPrice = sc.nextDouble();
+            System.out.print("请输入要添加商品的零售价: ");
+            double retailPrice = sc.nextDouble();
+            System.out.print("请输入要添加商品的数量: ");
             int num = sc.nextInt();
         }
         catch (Exception e){
@@ -137,18 +170,18 @@ public class Goods {
 
         while(true){
             if(num < 0){
-                System.out.print("非法输入！请重新输入商品数量：");
+                System.out.print("非法输入!请重新输入商品数量: ");
                 num = sc.nextInt();
             }
             else
                 break;
         }
 
-        Goods newGood = new Goods(Id,price,name,num);
+        Goods newGood = new Goods(Id, name, manufacturer, productionDate, model, buyingPrice, retailPrice, num);
         goods[numGood] = newGood;
         numGood++;
         quickSortGood(goods, 0, numGood-1);
-        System.out.println("添加成功！");
+        System.out.println("添加商品成功!");
     }
 
     public void del(Goods[] goods) {   //删除商品
@@ -157,8 +190,9 @@ public class Goods {
             System.out.println("没有商品可以删除了!");
             return;
         }
+
         Scanner sc = new Scanner(System.in);
-        System.out.print("请输入要删除商品的ID：");
+        System.out.print("请输入要删除商品的ID: ");
         try {
             int id = sc.nextInt();
         }
@@ -167,61 +201,75 @@ public class Goods {
             sc.next();
             return;
         }
+
         int index= findGoodIndex(goods, id);
         if(index == -1) {
-            System.out.println("没有找到该商品，删除失败！");
+            System.out.println("没有找到该商品，删除失败!");
             return;
         }
-        for(int i = index; i < numGood - 1; i++) {
-            goods[i] = goods[i + 1];
+
+        System.out.println("请确认是否删除,是请输入1,否请输入0: ");
+        int flag = sc.nextInt();
+        if(flag == 0){
+            System.out.println("删除取消");
+        }else{
+            for(int i = index; i < numGood - 1; i++) {
+                goods[i] = goods[i + 1];
+            }
+            numGood--;
+            System.out.println("删除商品成功!");            
         }
-        numGood--;
-        System.out.println("删除成功！");
     }
 
     public void change(Goods[] goods) {   //修改商品
         int index = -1;
         Scanner sc = new Scanner(System.in);
-        System.out.println("请输入要修改商品的ID：");
+        System.out.println("请输入要修改商品的编号: ");
 
         try {
             int id = sc.nextInt();
             index = findGoodIndex(goods, id);
             if (index == -1) {
-                System.out.println("没有找到该商品，无法修改！");
+                System.out.println("没有找到该商品，无法修改!");
                 return;
             }
-            System.out.println("请输入修改后的ID：");
+            System.out.println("请输入修改后的编号: ");
             int newId = sc.nextInt();
             if (findGoodIndex(goods, newId) != -1) {
-                System.out.println("已存在相同ID的商品!");
+                System.out.println("已存在相同编号的商品!");
                 return;
             } else
                 goods[index].id = newId;
 
-            System.out.println("请输入修改后的价格：");
-            double newPrice = sc.nextDouble();
-            goods[index].price = newPrice;
-            System.out.println("请输入修改后的商品名称：");
-            String newName = sc.next();
-            goods[index].name = newName;
-            System.out.print("请输入修改后的商品的数量：");
+            System.out.print("请输入修改后商品的名称: ");
+            String name = sc.next();
+            System.out.print("请输入修改后商品的生产厂家: ");
+            String manufacturer = sc.next();
+            System.out.print("请输入修改后商品的生产日期: ");
+            int productionDate = sc.nextInt();
+            System.out.print("请输入修改后商品的型号: ");
+            int model = sc.nextInt();
+            System.out.print("请输入修改后商品的进货价: ");
+            double buyingPrice = sc.nextDouble();
+            System.out.print("请输入修改后商品的零售价: ");
+            double retailPrice = sc.nextDouble();
+            System.out.print("请输入修改后商品的数量: ");
             int num = sc.nextInt();
         }
         catch (Exception e){
-            System.out.println("非法输入！");
+            System.out.println("非法输入!");
             sc.next();
             return;
         }
 
         while(true){
-            if(num<0){
-                System.out.print("非法输入！请重新输入商品数量：");
+            if(num < 0){
+                System.out.print("非法输入!请重新输入商品数量: ");
                 try {
                     num = sc.nextInt();
                 }
                 catch (Exception e){
-                    System.out.println("非法输入！");
+                    System.out.println("非法输入!");
                     sc.next();
                     return;
                 }
